@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine’s Day ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<style>
+    *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+    }
+
+    body{
+    background:linear-gradient(135deg,#ff4e8d,#ff9ac4);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    color:white;
+    }
+
+    .container{
+    text-align:center;
+    padding:20px;
+    width:100%;
+    max-width:400px;
+    }
+
+    h1{
+    font-size:35px;
+    font-family:'Great Vibes', cursive;
+    margin-bottom:10px;
+    }
+    h2{
+    font-size:28px;
+    font-family:'Great Vibes', cursive;
+    margin-bottom:15px;
+    }
+    .p1{
+        margin-bottom: 15px;
+    }
+    button{
+    padding:12px 25px;
+    border:none;
+    border-radius:30px;
+    font-size:16px;
+    background:white;
+    color:#ff4e8d;
+    font-weight:bold;
+    cursor:pointer;
+    }
+
+    .slideshow{
+    display:none;
+    position:relative;
+    margin-top:20px;
+    }
+
+    .slide{
+    display:none;
+    }
+
+    .slide img{
+    width:100%;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    .active{
+    display:block;
+    animation:fade 1s;
+    }
+
+    @keyframes fade{
+    from{opacity:0;}
+    to{opacity:1;}
+    }
+
+</style>
+<body>
+    <div class="container">
+        <h1>Happy Valentine’s Day ❤️</h1>
+        <h3>I Love u sooooo much </h3>
+        <h2>My Wifey🫂</h2>
+        <p class="p1">I love you madam ji, hum kitne time se sath hai yaar mtlb socho 2 years 1 month and 14 days 🫠</p>
+        <p class="p2">Dhekho iss valentine maine aapke liye jaada kuch kiya nahi and sorry maine aapko koi gift bhi nahi diya sorry😅
+        </p>   
+        <p class="p3">But i wanted to wish you but not like a normal msg i wanted ki thoda different ho, Toh you know ye website sirf meri pyari patni keliye hai.<br>
+            aur mai ye kehna chahta hu ki hum itne time se sath hai mtlb bas bhake hi 2 saal ho ye aisa lagta hai humne bahut time sath bitaya ho you know I am very lucky to have you in my life,<br>
+            And mujhe accha lagta hai jab aap meresath hoti ho, its like I feel Complete with you like you are my other half😁.
+        </p> 
+        <p class="p3">Humne itne time kitni saaari memories banai hai and mai chahta hu hum aur memories banaye like obviously banayenge hi yaar😂<br>
+            And mai yeh kehna chahta hu ki mai humesha aapke sath hi rahunga aapka khayal rakhunga aapko humesha khush rakhunga, sorry kabhi kabhi aapko udaas bhi kar deta hu but I will become better🫡.<br>
+            Mai chahta hu aap bhi meresath humesha keliye raho I will make you my wife yaar one day, it feels so exciting yaaar hum humesha sath honge.<br>
+            You are the I will always keep as my main priorty and i will so you a nice life which you would have never expected and vaise you are already my valentine but i will still ask you somthing, aapko pata hai ye 
+        </p>
+        <h2>Will you be my valentine my lady😁</h2>
+        <button onclick="startSlideshow()">Chalo kuch rewind dheklo💌</button>
+
+        <div class="slideshow" id="slideshow">
+            <div class="slide active">
+                <img src="assets/images/1.jpg">
+            </div>
+            <div class="slide">
+                <img src="assets/images/2.jpg">
+            </div>
+            <div class="slide">
+                <img src="assets/images/3.jpg">
+            </div>
+            <div class="slide">
+                <img src="assets/images/4.jpg">
+            </div>
+            <div class="slide">
+                <img src="assets/images/5.jpg">
+            </div>
+            <div class="slide">
+                <img src="assets/images/6.jpg">
+            </div>
+            <div class="slide">
+                <img src="assets/images/7.jpg">
+            </div>
+            <div class="slide">
+                <img src="assets/images/8.jpeg">
+            </div>
+            <div class="slide">
+                <img src="assets/images/9.jpeg">
+            </div>
+            <div class="slide">
+                <img src="assets/images/10.jpeg">
+            </div>
+            <div class="slide">
+                <img src="assets/images/11.jpeg">
+            </div>
+        </div>
+    </div>
+<script>
+    let index = 0;
+    let slides;
+    let started = false;
+
+    function startSlideshow(){
+
+        if(started) return;   // Prevent double click
+        started = true;
+
+        // Hide all paragraphs
+        document.querySelectorAll("p").forEach(p => {
+            p.style.display = "none";
+        });
+
+        // Hide button
+        document.querySelector("button").style.display = "none";
+
+        // Show slideshow
+        document.getElementById("slideshow").style.display = "block";
+
+        slides = document.querySelectorAll(".slide");
+
+        setInterval(showSlide, 3000);
+    }
+
+    function showSlide(){
+        slides[index].classList.remove("active");
+        index = (index + 1) % slides.length;
+        slides[index].classList.add("active");
+    }
+
+    /* Swipe Support */
+    let startX = 0;
+
+    document.addEventListener("touchstart", e => {
+        startX = e.touches[0].clientX;
+    });
+
+    document.addEventListener("touchend", e => {
+        let endX = e.changedTouches[0].clientX;
+        if(endX < startX - 50){
+            nextSlide();
+        } else if(endX > startX + 50){
+            prevSlide();
+        }
+    });
+
+    function nextSlide(){
+        slides[index].classList.remove("active");
+        index = (index + 1) % slides.length;
+        slides[index].classList.add("active");
+    }
+
+    function prevSlide(){
+        slides[index].classList.remove("active");
+        index = (index - 1 + slides.length) % slides.length;
+        slides[index].classList.add("active");
+    }
+</script>
+
+</body>
+</html>
